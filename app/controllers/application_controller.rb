@@ -8,7 +8,7 @@ class ApplicationController < ActionController::Base
   protected
 
   def authenticate_user!
-    redirect_to signin_url unless user_signed_in?
+    redirect_to signin_url unless user_signed_in? && current_user.acts_as(:shareholder)
   end
   
   def current_user

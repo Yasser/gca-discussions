@@ -6,6 +6,7 @@ class TopicsController < ApplicationController
   end
 
   def show
+    flash[:message] = "Test"
     @post = Post.new(topic_id: @topic.id)
   end
   
