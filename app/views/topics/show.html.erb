@@ -1,2 +1,33 @@
-<h1>Topic#show</h1>
-<p>Find me in app/views/topic/show.html.erb</p>
+<p class="muted">Started by <%= @topic.user %></p>
+
+<h3><%= @topic.title %></h3>
+
+<ul class="unstyled" id="posts">
+	<% @topic.posts.each do |post| %>
+	<li>
+		<div class="row-fluid">
+			<div class="span7">
+				<%= post.content %>
+			</div>
+				<div class="span1">
+					<h1><%= post.user.initials %></h1>
+				</div>
+				<div class="span2">
+					<%= message_user_link post.user %><br/>
+					<small>
+						<%= post.created_at.strftime("%A, %B %e") %> <%= "(edited)" if post.created_at != post.updated_at %><br/>
+						<%= post.created_at.strftime("%l:%M%P") %></small>
+				</div>
+		</div>
+		<hr/>
+	</li>
+	<% end %>
+</ul>
+
+<hr/>
+
+<div class="row-fluid">
+	<div class="span7">
+		<%= render partial: "posts/form" %>
+	</div>
+</div>

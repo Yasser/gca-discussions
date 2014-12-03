@@ -1,10 +1,13 @@
 <h3>Discussion Topics</h3>
 
+<%= link_to "Start a New Topic", new_topic_url, class: "btn btn-success pull-right" %>
+
 <table class="table table-striped" id="topics">
   <thead>
     <tr>
       <th>Title</th>
       <th class="hidden-phone">Started By</th>
+      <th class="hidden-phone">Replies</th>
       <th class="hidden-phone">Last Activity</th>
     </tr>
   </thead>
@@ -15,7 +18,8 @@
 	      <tr class="topic">
 			<td><%= link_to topic.title, topic %></td>
 			<td class="hidden-phone"><%= topic.user %></td>
-			<td class="hidden-phone"> %></td>
+			<td><%= topic.posts.size - 1 %></td>
+			<td class="hidden-phone"><%= distance_of_time_in_words topic.last_activity, Time.now %> ago</td>
 	      </tr>
 	    <% end %>
 	<% else %>

@@ -1,3 +1,13 @@
 // Place all the styles related to the Post controller here.
 // They will automatically be included in application.css.
 // You can use Less here: http://lesscss.org/
+
+#posts li {
+	padding-bottom: 16px;
+	
+	h1 {
+		text-align: right;
+		font-weight: 100;
+		color: #DDD;
+	}
+}

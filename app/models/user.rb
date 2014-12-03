@@ -3,6 +3,8 @@ class User < ActiveRecord::Base
   
   self.primary_key = :uid
   
+  has_many :posts
+  has_many :topics
   has_and_belongs_to_many :access_groups
   
   default_scope { order('LOWER(last_name)') }
@@ -12,6 +14,10 @@ class User < ActiveRecord::Base
     # Array as OR not AND -- just looks for one match
     role_array = [role_array].flatten.map &:to_sym
     !(roles & role_array).empty?
+  end
+  
+  def initials
+    "#{first_name[0]}#{last_name[0]}"
   end
   
   def last_activity
