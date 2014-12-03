@@ -1,6 +1,6 @@
 <%= form_for [@topic, @post] do |f| %>
-	<%= f.label :content, "Reply" %>
+	<% if @post.new_record? %><%= f.label :content, "Your Reply" %><% end %>
 	<%= f.text_area :content, required: true, class: "input-block-level" %>
 	
-	<%= f.submit "Reply", class: "btn" %>
+	<%= f.submit @post.new_record? ? "Create" : "Update", class: "btn" %>
 <% end %>

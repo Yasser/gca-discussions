@@ -9,16 +9,19 @@
 			<div class="span7">
 				<%= post.content %>
 			</div>
-				<div class="span1">
-					<h1><%= post.user.initials %></h1>
-				</div>
-				<div class="span2">
-					<%= message_user_link post.user %><br/>
-					<small>
-						<%= post.created_at.strftime("%A, %B %e") %> <%= "(edited)" if post.created_at != post.updated_at %><br/>
-						<%= post.created_at.strftime("%l:%M%P") %></small>
-				</div>
+			<div class="span1">
+				<h1><%= post.user.initials %></h1>
+			</div>
+			<div class="span2">
+				<%= message_user_link post.user %><br/>
+				<small>
+					<%= post.created_at.strftime("%A, %B %e") %><br/>
+					<%= post.created_at.strftime("%l:%M%P") %><% if post.created_at != post.updated_at %> <strong>(Edited)</strong><% end %></small>
+			</div>
 		</div>
+		<% if current_user == post.user %>
+		<div class="row-fluid"><small><%= link_to "Edit", edit_topic_post_url(@topic, post) %></small></div>
+		<% end %>
 		<hr/>
 	</li>
 	<% end %>

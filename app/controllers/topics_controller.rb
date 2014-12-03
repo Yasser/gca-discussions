@@ -29,7 +29,7 @@ class TopicsController < ApplicationController
   end
 
   def update
-    if @topic.update(category_params)
+    if @topic.update(topic_params)
       redirect_to @topic, notice: 'Your topic was successfully updated.'
     else
       render action: 'edit'

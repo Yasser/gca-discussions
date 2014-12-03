@@ -1,14 +1,11 @@
 class PostsController < ApplicationController
-  before_action :set_post, only: [:show, :edit, :update, :destroy]
-  before_action :set_topic, only: [:create]
+  before_action :set_post, only: [:edit, :update, :destroy]
+  before_action :set_topic, only: [:create, :edit]
   
   def index
     @posts = Post.all
   end
 
-  def show
-  end
-  
   def new
     @post = Post.new
   end
@@ -28,8 +25,8 @@ class PostsController < ApplicationController
   end
 
   def update
-    if @post.update(category_params)
-      redirect_to @post, notice: 'Your post was successfully updated.'
+    if @post.update(post_params)
+      redirect_to @post.topic, notice: 'Your post was successfully updated.'
     else
       render action: 'edit'
     end
