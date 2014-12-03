@@ -1,0 +1,13 @@
+<%= nav_bar fixed: :top, brand: "GCA Discussions", responsive: true do %>
+    <%= menu_group do %>
+		<% if user_signed_in? %>
+			<%= menu_item "Topics", topics_url %>
+			<%= menu_item "New Topic", new_topic_url %>
+			<%= menu_divider %>
+			<%= menu_item "Sign out (#{current_user.first_name})", signout_url, :method => :delete %>
+
+		<% else %>
+			<%= menu_item "Sign in", signin_url %>
+		<% end %>
+    <% end %>
+<% end %>

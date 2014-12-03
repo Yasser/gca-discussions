@@ -1,0 +1,22 @@
+.navbar-fixed-top {
+	top: 0;
+	border-top: 2px solid #6D777B;
+}
+
+.navbar-fixed-bottom {
+	border-top: 2px solid #6D777B;
+	height: 12px;
+	background-color: #272727;
+}
+
+label > small {
+	color: #888;
+}
+
+.truncate {
+	display: inline-block;
+	max-width: 85%;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}

@@ -1,0 +1,25 @@
+<h3>Discussion Topics</h3>
+
+<table class="table table-striped" id="topics">
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th class="hidden-phone">Started By</th>
+      <th class="hidden-phone">Last Activity</th>
+    </tr>
+  </thead>
+
+  <tbody>
+	<% unless @topics.empty? %>
+	    <% @topics.each do |topic| %>
+	      <tr class="topic">
+			<td><%= link_to topic.title, topic %></td>
+			<td class="hidden-phone"><%= topic.user %></td>
+			<td class="hidden-phone"> %></td>
+	      </tr>
+	    <% end %>
+	<% else %>
+		<tr><td>No topics found</td><td></td><td></td></tr>
+	<% end %>
+  </tbody>
+</table>

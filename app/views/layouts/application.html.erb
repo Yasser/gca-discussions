@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Greater Colorado Anesthesia &#8212; Discussions</title>
+  <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
+  <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+  <%= csrf_meta_tags %>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <% [57,72,114,144].each do |p| %>
+  <%= favicon_link_tag "ios-#{p}x#{p}.png", rel: 'apple-touch-icon', type: 'image/png', sizes: "#{p}x#{p}" %>
+  <% end %>
+</head>
+<body>
+
+<%= render "layouts/navigation" %>
+
+<div class="container">
+    <%= bootstrap_flash %>
+	<%= render "layouts/modal_idle" if user_signed_in? %>
+    <%= yield %>
+</div>
+
+<div class="navbar navbar-fixed-bottom visible-desktop"></div>
+</body>
+</html>
