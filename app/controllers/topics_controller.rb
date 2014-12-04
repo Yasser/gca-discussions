@@ -2,11 +2,10 @@ class TopicsController < ApplicationController
   before_action :set_topic, only: [:show, :edit, :update, :destroy]
   
   def index
-    @topics = Topic.all
+    @topics = Topic.all.order('updated_at DESC')
   end
 
   def show
-    flash[:message] = "Test"
     @post = Post.new(topic_id: @topic.id)
   end
   

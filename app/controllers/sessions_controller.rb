@@ -14,29 +14,32 @@ class SessionsController < ApplicationController
     auth = request.env["omniauth.auth"]
     roles = auth['info']['group']
     
-    redirect_to root_url, alert: "You do not have sufficient priveleges to use this application." unless permitted(roles)
-
-    user = User.find_by(uid: auth['uid'])
+    if permitted(roles)
+      user = User.find_by(uid: auth['uid'])
     
-    if user
-      attributes = {access_group_ids: AccessGroup.where(key: roles).select(:id).map(&:id), admin: roles.include?("admin")}
-      [:first_name, :last_name, :title].each do |n|
-        attributes.merge!({n => auth['info'][n.to_s]}) if auth['info'][n.to_s] != user.send(n)
+      if user
+        attributes = {access_group_ids: AccessGroup.where(key: roles).select(:id).map(&:id), admin: roles.include?("admin")}
+        [:first_name, :last_name, :title].each do |n|
+          attributes.merge!({n => auth['info'][n.to_s]}) if auth['info'][n.to_s] != user.send(n)
+        end
+        user.assign_attributes(attributes)
+        user.set_timestamps_from_request(request)
+        user.save
+      else
+        params_from_sso = {uid: auth['uid'], first_name: auth['info']['first_name'], last_name: auth['info']['last_name'], title: auth['info']['title'], email: auth['info']['email'], access_group_ids: AccessGroup.where(key: roles).select(:id).map(&:id), admin: roles.include?("admin"), current_sign_in_at: Time.now, current_sign_in_ip: request.remote_ip}
+        parameters = ActionController::Parameters.new(params_from_sso)
+        user = User.create(parameters.permit(:uid, :first_name, :last_name, :title, :email, :admin, :current_sign_in_at, :current_sign_in_ip, :access_group_ids => []))
       end
-      user.assign_attributes(attributes)
-      user.set_timestamps_from_request(request)
-      user.save
-    else
-      params_from_sso = {uid: auth['uid'], first_name: auth['info']['first_name'], last_name: auth['info']['last_name'], title: auth['info']['title'], email: auth['info']['email'], access_group_ids: AccessGroup.where(key: roles).select(:id).map(&:id), admin: roles.include?("admin"), current_sign_in_at: Time.now, current_sign_in_ip: request.remote_ip}
-      parameters = ActionController::Parameters.new(params_from_sso)
-      user = User.create(parameters.permit(:uid, :first_name, :last_name, :title, :email, :admin, :current_sign_in_at, :current_sign_in_ip, :access_group_ids => []))
-    end
-    session[:user] = user.uid
-    session[:trusted] = auth['extra']['session_trusted']
-    session[:expires_at] = Time.parse(auth['extra']['expires_at']) if session[:trusted]
-    session[:last_activity] = Time.now
+      session[:user] = user.uid
+      session[:trusted] = auth['extra']['session_trusted']
+      session[:expires_at] = Time.parse(auth['extra']['expires_at']) if session[:trusted]
+      session[:last_activity] = Time.now
 
-    redirect_to root_url, notice: "Successfully authenticated: #{current_user.name}"
+      redirect_to root_url, notice: "Successfully authenticated: #{current_user.name}"
+    else
+      reset_session
+      redirect_to root_url, alert: "You do not have sufficient priveleges to use this application."
+    end
   end
   
   def idle
@@ -64,7 +67,7 @@ class SessionsController < ApplicationController
   end
   
   def permitted_roles
-    :all
+    :shareholder
   end
   
   def sync_access_groups

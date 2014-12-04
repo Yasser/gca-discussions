@@ -1,6 +1,6 @@
 source 'http://rubygems.org'
 
-gem 'rails', '~> 4.1.0'
+gem 'rails', '~> 4.1.1'
 
 # Gems used only for assets and not required
 # in production environments by default.
@@ -13,7 +13,7 @@ end
 gem 'jquery-rails'
 gem 'turbolinks'
 gem 'nprogress-rails'
-gem 'twitter-bootstrap-rails', '~> 2.2.8'
+gem 'twitter-bootstrap-rails', :github => 'seyhunak/twitter-bootstrap-rails'
 gem 'less-rails'
 gem 'therubyracer'
 

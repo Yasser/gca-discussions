@@ -19,7 +19,7 @@
 			<td><%= link_to topic.title, topic %></td>
 			<td class="hidden-phone"><%= topic.user %></td>
 			<td><%= topic.posts.size - 1 %></td>
-			<td class="hidden-phone"><%= distance_of_time_in_words topic.last_activity, Time.now %> ago</td>
+			<td class="hidden-phone"><%= distance_of_time_in_words topic.updated_at, Time.now %> ago <small class="text-muted">by <%= topic.posts.last.user %></small></td>
 	      </tr>
 	    <% end %>
 	<% else %>

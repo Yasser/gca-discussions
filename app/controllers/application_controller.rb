@@ -1,6 +1,6 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
-  #force_ssl unless Rails.env.development?
+  force_ssl unless Rails.env.development?
   
   before_action :authenticate_user!
   before_action :validate_session
@@ -8,7 +8,7 @@ class ApplicationController < ActionController::Base
   protected
 
   def authenticate_user!
-    redirect_to signin_url unless user_signed_in? && current_user.acts_as(:shareholder)
+    redirect_to signin_url unless user_signed_in?
   end
   
   def current_user
