@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141203034642) do
+ActiveRecord::Schema.define(version: 20141204171059) do
 
   create_table "access_groups", force: true do |t|
     t.string   "key"
@@ -43,6 +43,7 @@ ActiveRecord::Schema.define(version: 20141203034642) do
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "closed"
   end
 
   add_index "topics", ["user_id"], name: "index_topics_on_user_id"

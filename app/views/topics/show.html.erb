@@ -29,9 +29,10 @@
 	<% end %>
 </ul>
 
-
+<% unless @topic.closed? %>
 <div class="row">
 	<div class="col-sm-7">
 		<%= render partial: "posts/form" %>
 	</div>
 </div>
+<% end %>
