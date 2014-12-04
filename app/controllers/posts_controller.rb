@@ -1,6 +1,8 @@
 class PostsController < ApplicationController
   before_action :set_post, only: [:edit, :update, :destroy]
   before_action :set_topic, only: [:create, :edit]
+  before_action :current_user_acts_as_owner, only: [:edit, :update]
+  before_action :current_user_acts_as_admin, only: [:destroy]
   
   def index
     @posts = Post.all
@@ -38,6 +40,10 @@ class PostsController < ApplicationController
   end
   
   protected
+  
+  def current_user_acts_as_owner
+    @post.user == current_user
+  end
   
   def post_params
     params.require(:post).permit(:content)
