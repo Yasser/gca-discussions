@@ -67,7 +67,7 @@ class SessionsController < ApplicationController
   end
   
   def permitted_roles
-    :shareholder
+    ["shareholder"]
   end
   
   def sync_access_groups
