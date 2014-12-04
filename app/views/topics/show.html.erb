@@ -29,7 +29,13 @@
 	<% end %>
 </ul>
 
-<% unless @topic.closed? %>
+<% if @topic.closed? %>
+<div class="row">
+	<div class="col-sm-7">
+		<p class="text-muted">This topic has been closed.</p>
+	</div>
+</div>
+<% else %>
 <div class="row">
 	<div class="col-sm-7">
 		<%= render partial: "posts/form" %>
