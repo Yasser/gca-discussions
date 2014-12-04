@@ -29,6 +29,8 @@
 	<% end %>
 </ul>
 
+<%= link_to "Destroy", topic_url, method: :delete, class: "pull-right btn btn-danger" if current_user.acts_as(:admin) %>
+
 <% if @topic.closed? %>
 <div class="row">
 	<div class="col-sm-7">
