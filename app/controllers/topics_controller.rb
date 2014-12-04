@@ -19,9 +19,9 @@ class TopicsController < ApplicationController
     @topic.user = current_user
         
     if @topic.save
-      redirect_to @topic, notice: "Successfully created your topic thread."
+      redirect_to @topic, notice: "Successfully created your thread."
     else
-      render action: :new, error: "An error occurred while trying to create your topic thread."
+      render action: :new, error: "An error occurred while trying to create your thread."
     end
   end
 
