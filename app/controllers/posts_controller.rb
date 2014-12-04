@@ -42,7 +42,7 @@ class PostsController < ApplicationController
   protected
   
   def current_user_acts_as_owner
-    @post.user == current_user
+    redirect_to topics_url, error: "You do not have privileges to perform that action." if @post.user == current_user
   end
   
   def post_params
