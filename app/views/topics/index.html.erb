@@ -19,9 +19,9 @@
   <thead>
     <tr>
       <th>Title</th>
-      <th class="hidden-phone">Started By</th>
-      <th class="hidden-phone">Replies</th>
-      <th class="hidden-phone">Last Activity</th>
+      <th class="hidden-xs">Started By</th>
+      <th>Replies</th>
+      <th>Last Activity</th>
     </tr>
   </thead>
 
@@ -30,9 +30,9 @@
 	    <% @topics.each do |topic| %>
 	      <tr class="topic">
 			<td><%= link_to topic.title, topic %></td>
-			<td class="hidden-phone"><%= topic.user %></td>
+			<td class="hidden-xs"><%= topic.user %></td>
 			<td><%= topic.posts.size - 1 %></td>
-			<td class="hidden-phone"><%= distance_of_time_in_words topic.updated_at, Time.now %> ago <small class="text-muted">by <%= topic.posts.last.user %></small></td>
+			<td><%= distance_of_time_in_words topic.updated_at, Time.now %> ago <small class="text-muted hidden-xs">by <%= topic.posts.last.user %></small></td>
 	      </tr>
 	    <% end %>
 	<% else %>
