@@ -3,6 +3,7 @@
 		<% if user_signed_in? %>
 			<%= menu_item "Topics", topics_url %>
 			<%= menu_item "New Topic", new_topic_url %>
+			<%= menu_item "Users", users_url if current_user.acts_as(:admin) %>
 			<%= menu_divider %>
 			<%= menu_item "Sign out (#{current_user.first_name})", signout_url, :method => :delete %>
 
