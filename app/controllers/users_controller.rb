@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :current_user_acts_as_admin, only: [:index, :destroy]
+  before_action :current_user_acts_as_admin
 
   def index
     @users = User.all
