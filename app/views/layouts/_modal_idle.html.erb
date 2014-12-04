@@ -1,13 +1,17 @@
-<div id="modalIdle" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="modalWarningLabel" aria-hidden="true" data-redirect="<%= idle_url %>">
-  <div class="modal-header">
-    <h3 id="myModalLabel">Still There?</h3>
-  </div>
-  <div class="modal-body">
-	<h5>Your session appears to be idle.</h5>
+<div id="modalIdle" class="modal fade" tabindex="-1" aria-labelledby="modalWarningLabel" aria-hidden="true" data-redirect="<%= idle_url %>">
+	<div class="modal-dialog">
+		<div class="modal-content">
+		  <div class="modal-header">
+		    <h3 class="modal-title" id="myModalLabel">Still There?</h3>
+		  </div>
+		  <div class="modal-body">
+			<h5>Your session appears to be idle.</h5>
 	
-    <p>If you'd like to continue your session, please click below. Otherwise, your session will end in <strong><span id="modalIdleCounter">10</span> seconds.</strong></p>
-  </div>
-  <div class="modal-footer">
-    <button class="btn btn-info" id="idle_reset" data-dismiss="modal" aria-hidden="true">Continue</button>
-  </div>
+		    <p>If you'd like to continue your session, please click below. Otherwise, your session will end in <strong><span id="modalIdleCounter">10</span> seconds.</strong></p>
+		  </div>
+		  <div class="modal-footer">
+		    <button class="btn btn-info" id="idle_reset" data-dismiss="modal" aria-hidden="true">Continue</button>
+		  </div>
+		</div>
+	</div>
 </div>

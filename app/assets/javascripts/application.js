@@ -14,4 +14,8 @@
 //= require jquery_ujs
 //= require twitter/bootstrap
 //= require turbolinks
+//= require nprogress
+//= require nprogress-turbolinks
+//= require jquery.idle-timer
+//= require jquery.timer
 //= require_tree .
