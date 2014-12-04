@@ -2,6 +2,8 @@
 
 <p>Users are synced from GCA SSO, but not deleted. You can delete inactive or closed accounts by selecting "Destroy" below.</p>
 
+<%= link_to "Sync with SSO", sync_users_url, method: :patch, class: "btn-success" %>
+
 <div class="row">
 	<div class="col-sm-12">
 		<table class="table table-striped">
@@ -25,7 +27,7 @@
 				<td><%= user.roles.join(", ") %></td>
 				<td><%= user.last_activity %></td>
 		        <td>
-					<%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-inverse" if current_user.acts_as(:admin) %>
+					<%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn-warning" if current_user.acts_as(:admin) %>
 				</td>
 		        <td></td>
 		      </tr>
