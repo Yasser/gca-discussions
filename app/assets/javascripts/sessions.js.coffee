@@ -4,7 +4,7 @@ NProgress.configure
   speed: 500
 
 ready = ->
-  $.idleTimer(90000) if $('#modalIdle').length > 0
+  $.idleTimer(600000) if $('#modalIdle').length > 0
   
   $(document).on("idle.idleTimer", () ->
     el = $("#modalIdleCounter")
