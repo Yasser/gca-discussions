@@ -44,7 +44,7 @@ class UsersController < ApplicationController
         else
           u = User.new(uid: user["uid"], access_group_ids: AccessGroup.where(key: user["user_groups"]).pluck(:id), email: user["email"], first_name: user['first_name'], last_name: user['last_name'], title: user['title'])
         end
-        u.save if u.changed? && user["user_groups"].include?("shareholder")
+        u.save if u.changed?
       end
       Rails.cache.write(:user_list_updated_at, Time.now)
     end
