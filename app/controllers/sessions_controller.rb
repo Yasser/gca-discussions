@@ -8,6 +8,7 @@ class SessionsController < ApplicationController
   end
   
   def index
+    redirect_to :signin if Rails.configuration.redirect_to_sso_login
   end
 
   def create
@@ -53,7 +54,7 @@ class SessionsController < ApplicationController
       reset_session
       flash[:notice] = prior_flash || "You have successfully signed out."
     end
-    redirect_to root_url
+    redirect_to Rails.configuration.redirect_to_sso_login ? sso_url : root_url
   end
 
   def failure
@@ -68,6 +69,10 @@ class SessionsController < ApplicationController
   
   def permitted_roles
     :all
+  end
+  
+  def sso_url
+    OmniAuth::Strategies::Gca.default_options['client_options']['site']
   end
   
   def sync_access_groups
