@@ -21,6 +21,7 @@ module GcaDiscussions
     # config.i18n.default_locale = :de
 
     # Force the signin method to redirect to SSO login (session/new)
-    config.redirect_to_sso_login = true
+    config.sso_redirect_as_session_index = true
+    config.sso_redirect_after_session_destroy = true
   end
 end
