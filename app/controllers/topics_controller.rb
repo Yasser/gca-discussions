@@ -18,7 +18,7 @@ class TopicsController < ApplicationController
 
   def create
     @topic = Topic.new(topic_params)
-    @topic.user = current_user
+    @topic.user_id = current_user.id
         
     if @topic.save
       redirect_to @topic, notice: "Successfully created your thread."
@@ -46,7 +46,7 @@ class TopicsController < ApplicationController
   protected
   
   def current_user_acts_as_owner
-    redirect_to topics_url, error: "You do not have privileges to perform that action." if @topic.user == current_user
+    redirect_to topics_url, error: "You do not have privileges to perform that action." if @topic.user_id == current_user.id
   end
   
   def set_topic

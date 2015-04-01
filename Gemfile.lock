@@ -1,8 +1,8 @@
 GIT
   remote: git://github.com/Yasser/omniauth-gca.git
-  revision: d19b7993c176c8759e1ab81daa436c51a3905c0f
+  revision: eb6739f124f12d02d8b26239cc136b6678653d7d
   specs:
-    omniauth-gca (0.1.18)
+    omniauth-gca (0.2.1)
       faraday
 
 GIT

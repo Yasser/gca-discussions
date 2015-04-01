@@ -1,14 +1,14 @@
-<%= nav_bar fixed: :top, brand: "GCA Discussions", responsive: true do %>
+<%= nav_bar fixed: :top, brand: "GCA Discussions", brand_link: main_app.root_url, responsive: true do %>
     <%= menu_group do %>
 		<% if user_signed_in? %>
-			<%= menu_item "Topics", topics_url %>
-			<%= menu_item "New Topic", new_topic_url %>
-			<%= menu_item "Users", users_url if current_user.acts_as(:admin) %>
+			<%= menu_item "Topics", main_app.topics_url %>
+			<%= menu_item "New Topic", main_app.new_topic_url %>
+			<%= menu_item "Users", gca_sso_client.users_url if current_user.acts_as(:admin) %>
 			<%= menu_divider %>
-			<%= menu_item "Sign out (#{current_user.first_name})", signout_url, :method => :delete %>
+			<%= menu_item "Sign out (#{current_user.first_name})", gca_sso_client.signout_url, :method => :delete %>
 
 		<% else %>
-			<%= menu_item "Sign in", signin_url %>
+			<%= menu_item "Sign in", gca_sso_client.signin_url %>
 		<% end %>
     <% end %>
 <% end %>

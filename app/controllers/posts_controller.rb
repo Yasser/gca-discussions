@@ -14,7 +14,7 @@ class PostsController < ApplicationController
 
   def create
     @post = @topic.posts.new(post_params)
-    @post.user = current_user
+    @post.user_id = current_user.id
     
     if @post.save
       redirect_to @post.topic, notice: "Successfully created your post."
@@ -42,7 +42,7 @@ class PostsController < ApplicationController
   protected
   
   def current_user_acts_as_owner
-    redirect_to topics_url, error: "You do not have privileges to perform that action." if @post.user == current_user
+    redirect_to topics_url, error: "You do not have privileges to perform that action." if @post.user_id == current_user.id
   end
   
   def post_params
